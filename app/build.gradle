@@ -12,12 +12,45 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
+            //显示 Log
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //不显示 Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            //移除无用的 Resource
+            shrinkResources false
+            //资源文件按4字节对齐
+            zipAlignEnabled true
+            //关闭调试
+            debuggable false
+
+
+            // 多渠道打包自定义格式apk
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        // 输出apk名称为DailyNews_v1.0_.apk
+                        def fileName = "DailyNews_v${defaultConfig.versionName}_${buildType.name}.apk"
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+                }
+            }
         }
+
     }
 }
+
+
+
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -26,4 +59,17 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.0.0'
     testCompile 'junit:junit:4.12'
+    //retrofit 和 rxjava
+    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta3'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.1.2'
+    compile 'io.reactivex:rxjava:1.0.1'
+    compile 'io.reactivex:rxandroid:1.0.1'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'
+    //logger
+    compile 'com.orhanobut:logger:1.15'
+    compile 'com.jakewharton:butterknife:7.0.1'//butterknife 注解
+    compile 'com.github.bumptech.glide:glide:3.6.1'//Glide 加载图片框架
+
+
 }
