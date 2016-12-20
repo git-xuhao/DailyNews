@@ -1,4 +1,4 @@
-package com.geek.dailynews.base;
+package com.geek.dailynews.mvpframe.base;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
