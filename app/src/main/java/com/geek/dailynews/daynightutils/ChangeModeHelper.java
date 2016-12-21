@@ -1,4 +1,4 @@
-package com.geek.dailynews.daynightmodeutils;
+package com.geek.dailynews.daynightutils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

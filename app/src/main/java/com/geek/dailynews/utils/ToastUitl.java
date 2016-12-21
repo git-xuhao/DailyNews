@@ -9,7 +9,7 @@ import com.geek.dailynews.DailyNewsApplication;
 /**
  * Toast统一管理类
  */
-public class ToastUitls {
+public class ToastUitl {
 
 
     private static Toast toast;

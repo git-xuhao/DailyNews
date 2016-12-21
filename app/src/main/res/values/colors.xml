@@ -16,4 +16,7 @@
     <color name="day_two_text_color">#c9000000</color>
     <color name="day_three_text_color">#8A9599</color>
 
+
+    <color name="white">#FFFFFF</color>
+
 </resources>

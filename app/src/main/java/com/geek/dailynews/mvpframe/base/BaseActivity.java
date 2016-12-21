@@ -12,17 +12,22 @@ import android.view.Window;
 
 import com.geek.dailynews.BuildConfig;
 import com.geek.dailynews.R;
-import com.geek.dailynews.daynightmodeutils.ChangeModeController;
+import com.geek.dailynews.daynightutils.ChangeModeController;
 import com.geek.dailynews.mvpframe.baseapp.AppManager;
 import com.geek.dailynews.mvpframe.baserx.RxManager;
 import com.geek.dailynews.utils.TUtil;
-import com.geek.dailynews.utils.ToastUitls;
+import com.geek.dailynews.utils.ToastUitl;
 import com.geek.dailynews.widget.StatusBarCompat;
 
 import butterknife.ButterKnife;
 
 /**
+ * MyBlog: xuhaoblog.com
+ * GitHub: github.com/git-xuhao
+ * Created by Xiho
+ * on 2016.12.13  18:05
  * Activity 基类
+ *
  * @param <T> Presenter 层
  * @param <E> Model 层
  */
@@ -32,18 +37,18 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     public Context mContext;
     public RxManager mRxManager;
 
-        @Override
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-            mRxManager = new RxManager();
-            doBeforeSetContentView();
-            setContentView(getLayoutId());
-            ButterKnife.bind(this);
+        doBeforeSetContentView();
+        setContentView(getLayoutId());
+        ButterKnife.bind(this);
         mContext = this;
+        mRxManager = new RxManager();
         mPresenter = TUtil.getT(this, 0);
-        mModel=TUtil.getT(this,1);
-        if(mPresenter!=null){
-            mPresenter.mContext=this;
+        mModel = TUtil.getT(this, 1);
+        if (mPresenter != null) {
+            mPresenter.mContext = this;
         }
         this.initPresenter();
         this.initView();
@@ -65,12 +70,20 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         SetStatusBarColor();
 
     }
-    /*********************子类实现*****************************/
-    //获取布局文件
+
+    /**
+     * 获取布局文件
+     */
     public abstract int getLayoutId();
-    //简单界面无需初始化
+
+    /**
+     * 简单界面无需初始化
+     */
     public abstract void initPresenter();
-    //初始化view
+
+    /**
+     * 初始化View
+     */
     public abstract void initView();
 
 
@@ -80,25 +93,27 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     private void initTheme() {
         ChangeModeController.setTheme(this, R.style.DayTheme, R.style.NightTheme);
     }
+
     /**
      * 着色状态栏（4.4以上系统有效）
      */
-    protected void SetStatusBarColor(){
-        StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this,R.color.colorPrimary));
+    protected void SetStatusBarColor() {
+        StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary));
     }
+
     /**
      * 着色状态栏（4.4以上系统有效）
      */
-    protected void SetStatusBarColor(int color){
-        StatusBarCompat.setStatusBarColor(this,color);
+    protected void SetStatusBarColor(int color) {
+        StatusBarCompat.setStatusBarColor(this, color);
     }
+
     /**
      * 沉浸状态栏（4.4以上系统有效）
      */
-    protected void SetTranslanteBar(){
+    protected void SetTranslanteBar() {
         StatusBarCompat.translucentStatusBar(this);
     }
-
 
 
     /**
@@ -171,28 +186,28 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
      * 短暂显示Toast提示(id)
      **/
     public void showShortToast(int resId) {
-        ToastUitls.showShort(resId);
+        ToastUitl.showShort(resId);
     }
 
     /**
      * 长时间显示Toast提示(来自res)
      **/
     public void showLongToast(int resId) {
-        ToastUitls.showLong(resId);
+        ToastUitl.showLong(resId);
     }
 
     /**
      * 长时间显示Toast提示(来自String)
      **/
     public void showLongToast(String text) {
-        ToastUitls.showLong(text);
+        ToastUitl.showLong(text);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         //debug版本不统计crash
-        if(!BuildConfig.LOG_DEBUG) {
+        if (!BuildConfig.LOG_DEBUG) {
             //友盟统计
 
         }
@@ -202,7 +217,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     protected void onPause() {
         super.onPause();
         //debug版本不统计crash
-        if(!BuildConfig.LOG_DEBUG) {
+        if (!BuildConfig.LOG_DEBUG) {
             //友盟统计
 
         }
