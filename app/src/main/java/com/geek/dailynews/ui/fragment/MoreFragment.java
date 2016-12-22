@@ -6,32 +6,25 @@ import com.geek.dailynews.R;
 import com.geek.dailynews.mvpframe.base.BaseFragment;
 
 public class MoreFragment extends BaseFragment {
-    // TODO: Rename parameter arguments, choose names that match
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    private String mParam1;
-    private String mParam2;
+    private String title;
+
     public MoreFragment() {
 
     }
 
-    public static MoreFragment newInstance(String param1, String param2) {
+    public static MoreFragment getInstance(String title) {
         MoreFragment fragment = new MoreFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+        fragment.title = title;
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
 

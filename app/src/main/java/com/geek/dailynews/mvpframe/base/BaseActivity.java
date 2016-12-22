@@ -16,7 +16,7 @@ import com.geek.dailynews.daynightutils.ChangeModeController;
 import com.geek.dailynews.mvpframe.baseapp.AppManager;
 import com.geek.dailynews.mvpframe.baserx.RxManager;
 import com.geek.dailynews.utils.TUtil;
-import com.geek.dailynews.utils.ToastUitl;
+import com.geek.dailynews.utils.ToastUitls;
 import com.geek.dailynews.widget.StatusBarCompat;
 
 import butterknife.ButterKnife;
@@ -39,8 +39,8 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         doBeforeSetContentView();
+        super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
         mContext = this;
@@ -67,7 +67,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         // 设置竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // 默认着色状态栏
-        SetStatusBarColor();
+//        SetStatusBarColor();
 
     }
 
@@ -186,21 +186,21 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
      * 短暂显示Toast提示(id)
      **/
     public void showShortToast(int resId) {
-        ToastUitl.showShort(resId);
+        ToastUitls.showShort(resId);
     }
 
     /**
      * 长时间显示Toast提示(来自res)
      **/
     public void showLongToast(int resId) {
-        ToastUitl.showLong(resId);
+        ToastUitls.showLong(resId);
     }
 
     /**
      * 长时间显示Toast提示(来自String)
      **/
     public void showLongToast(String text) {
-        ToastUitl.showLong(text);
+        ToastUitls.showLong(text);
     }
 
     @Override

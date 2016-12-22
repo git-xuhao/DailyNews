@@ -14,11 +14,14 @@ import com.geek.dailynews.mvpframe.base.BaseFragment;
  */
 public class VideoFragment extends BaseFragment {
 
+    private String title;
 
-    private static VideoFragment getInstance() {
+
+    public static VideoFragment getInstance(String title) {
         VideoFragment fragment = new VideoFragment();
         Bundle bundle = new Bundle();
         fragment.setArguments(bundle);
+        fragment.title = title;
         return fragment;
     }
     @Override

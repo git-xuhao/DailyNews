@@ -15,10 +15,13 @@ import com.geek.dailynews.mvpframe.base.BaseFragment;
  */
 public class PictureFragment extends BaseFragment {
 
-    private static PictureFragment getInstance() {
+    private String title;
+
+    public static PictureFragment getInstance(String title) {
         PictureFragment fragment = new PictureFragment();
         Bundle bundle = new Bundle();
         fragment.setArguments(bundle);
+        fragment.title = title;
         return fragment;
     }
 

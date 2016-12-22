@@ -14,11 +14,11 @@ import com.geek.dailynews.mvpframe.baserx.RxManager;
 public abstract class BasePresenter<M, V> {
     public Context mContext;
     public M mModel;
-    public V mView;
+    public V mRootView;
     public RxManager mRxManager = new RxManager();
 
     public void setVM(V v, M m) {
-        this.mView = v;
+        this.mRootView = v;
         this.mModel = m;
     }
 

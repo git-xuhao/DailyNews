@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.geek.dailynews.mvpframe.baserx.RxManager;
 import com.geek.dailynews.utils.TUtil;
-import com.geek.dailynews.utils.ToastUitl;
+import com.geek.dailynews.utils.ToastUitls;
 
 import butterknife.ButterKnife;
 
@@ -129,21 +129,21 @@ public abstract class BaseFragment<T extends BasePresenter,E extends BaseModel> 
      * 短暂显示Toast提示(id)
      **/
     public void showShortToast(int resId) {
-        ToastUitl.showShort(resId);
+        ToastUitls.showShort(resId);
     }
 
     /**
      * 长时间显示Toast提示(来自res)
      **/
     public void showLongToast(int resId) {
-        ToastUitl.showLong(resId);
+        ToastUitls.showLong(resId);
     }
 
     /**
      * 长时间显示Toast提示(来自String)
      **/
     public void showLongToast(String text) {
-        ToastUitl.showLong(text);
+        ToastUitls.showLong(text);
     }
 
 

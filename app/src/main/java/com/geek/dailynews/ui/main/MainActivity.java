@@ -1,6 +1,7 @@
 package com.geek.dailynews.ui.main;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.widget.FrameLayout;
@@ -31,14 +32,16 @@ public class MainActivity extends BaseActivity {
     private PictureFragment mPictureFragment;
     private MoreFragment mMoreFragment;
 
-    private String[] mTitles={"资讯","视频","图库","我的"};
+    private String[] mTitles = {"资讯", "视频", "图库", "我的"};
 
-    private int[] mIconUnSelectIds = {
-            R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher};
-    private int[] mIconSelectIds = {
-            R.mipmap.ic_launcher,R.mipmap.ic_launcher, R.mipmap.ic_launcher,R.mipmap.ic_launcher};
+    private int[] mIconUnSelectIds = {R.mipmap.ic_launcher, R.mipmap.ic_launcher,
+            R.mipmap.ic_launcher, R.mipmap.ic_launcher};
+    private int[] mIconSelectIds = {R.mipmap.ic_launcher, R.mipmap.ic_launcher,
+            R.mipmap.ic_launcher, R.mipmap.ic_launcher};
+
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
-    // 当前显示的index
+    private ArrayList<Fragment> mFragments = new ArrayList<>();
+    // 默认为0;
     private int mCurrIndex = 0;
 
 
@@ -46,7 +49,6 @@ public class MainActivity extends BaseActivity {
     FrameLayout flContainer;
     @Bind(R.id.tab_layout)
     CommonTabLayout tabLayout;
-
     @Override
     public int getLayoutId() {
         return R.layout.activity_main;
@@ -62,6 +64,18 @@ public class MainActivity extends BaseActivity {
         initTab();
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        LogUtils.logd("onCreate...........");
+        if(savedInstanceState!=null) {
+            LogUtils.loge("onRestore enter...."+mCurrIndex);
+            mCurrIndex = savedInstanceState.getInt("currTabIndex");
+        }
+        tabLayout.setCurrentTab(mCurrIndex);
+        switchFragment(mCurrIndex);
+    }
+
     /**
      * 初始化底部菜单
      */
@@ -74,6 +88,7 @@ public class MainActivity extends BaseActivity {
         tabLayout.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
+                //切换Fragment
                 switchFragment(position);
             }
 
@@ -92,36 +107,37 @@ public class MainActivity extends BaseActivity {
         // Fragment事务管理器
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         hideFragments(transaction);
+        LogUtils.logd("current position tab"+position);
         switch (position){
-            case 0:
+            case 0: //首页
                 if(mHomeFragment==null) {
-                    mHomeFragment = new HomeFragment();
+                    mHomeFragment = HomeFragment.getInstance(mTitles[0]);
                     transaction.add(R.id.fl_container,mHomeFragment,"home");
                 }else{
                     transaction.show(mHomeFragment);
                 }
                 break;
-            case 1:
+            case 1: //视频
                 if(mVideoFragment==null) {
-                    mVideoFragment = new VideoFragment();
+                    mVideoFragment = VideoFragment.getInstance(mTitles[1]);
                     transaction.add(R.id.fl_container,mVideoFragment,"video");
                 }else{
                     transaction.show(mVideoFragment);
                 }
                 break;
 
-            case 2:
+            case 2: //图库
                 if(mPictureFragment==null) {
-                    mPictureFragment = new PictureFragment();
+                    mPictureFragment = PictureFragment.getInstance(mTitles[2]);
                     transaction.add(R.id.fl_container,mPictureFragment,"picture");
                 }else{
                     transaction.show(mPictureFragment);
                 }
                 break;
 
-            case 3:
+            case 3: //更多
                 if(mMoreFragment==null) {
-                    mMoreFragment = new MoreFragment();
+                    mMoreFragment = MoreFragment.getInstance(mTitles[3]);
                     transaction.add(R.id.fl_container,mMoreFragment,"more");
                 }else{
                     transaction.show(mMoreFragment);
@@ -159,36 +175,15 @@ public class MainActivity extends BaseActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         //记录fragment的位置,防止崩溃 activity被系统回收时，fragment错乱
-        LogUtils.loge("onSaveInstanceState crash...");
+        LogUtils.loge("onSaveInstanceState crash..."+mCurrIndex);
         if (tabLayout != null) {
-            outState.putInt("currTabIndex", tabLayout.getCurrentTab());
+            outState.putInt("currTabIndex", mCurrIndex);
         }
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        mCurrIndex = savedInstanceState.getInt("currTabIndex");
-    }
-
-    /**
-     * 监听返回键
-     * @param keyCode
-     * @param event
-     * @return
-     */
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            moveTaskToBack(false);
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        tabLayout.setCurrentTab(mCurrIndex);
     }
 }

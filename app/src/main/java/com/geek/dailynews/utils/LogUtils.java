@@ -11,7 +11,7 @@ import com.orhanobut.logger.Logger;
  * Android：将信息记录到logcat
  */
 public class LogUtils {
-    public static boolean DEBUG_ENABLE =false;// 是否调试模式
+    public static boolean DEBUG_ENABLE =true;// 是否调试模式
     /**
      * 在application调用初始化
      */
