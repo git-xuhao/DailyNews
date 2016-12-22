@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
@@ -29,7 +31,6 @@ public class HomeFragment extends BaseFragment {
     @Bind(R.id.fab)
     FloatingActionButton mFab;
 
-    private Toolbar toolbar;
     private String title;
 
     public static HomeFragment getInstance(String title) {
@@ -52,10 +53,19 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+        Toolbar toolbar = mViewPager.getToolbar();
         if(toolbar!=null){
+            setHasOptionsMenu(true);
+            ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+            ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+            //使左上角图标是否显示
+            actionBar.setDisplayShowHomeEnabled(true);
+            // 给左上角图标的左边加上一个返回的图标
+            actionBar.setDisplayHomeAsUpEnabled(false);
+            // 是否显示title
+            actionBar.setDisplayShowTitleEnabled(false);
 
         }
-
         mViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getChildFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
@@ -122,16 +132,16 @@ public class HomeFragment extends BaseFragment {
         mViewPager.getViewPager().setOffscreenPageLimit(mViewPager.getViewPager().getAdapter().getCount());
         mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
 
-//        View logo = rootView.findViewById(R.id.logo_white);
-//        if (logo != null) {
-//            logo.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    mViewPager.notifyHeaderChanged();
-//                    ToastUitls.showShort("Yes, the title is clickable");
-//                }
-//            });
-//        }
+        View logo = rootView.findViewById(R.id.logo_white);
+        if (logo != null) {
+            logo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mViewPager.notifyHeaderChanged();
+                    showShortToast("点到我啦~~~~~~");
+                }
+            });
+        }
 
 
 
