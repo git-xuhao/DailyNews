@@ -3,7 +3,7 @@ package com.geek.dailynews.utils;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.geek.dailynews.DailyNewsApplication;
+import com.geek.dailynews.MyApplication;
 
 
 /**
@@ -17,7 +17,7 @@ public class ToastUitls {
 
     private static Toast initToast(CharSequence message, int duration) {
         if (toast == null) {
-            toast = Toast.makeText(DailyNewsApplication.getAppContext(), message, duration);
+            toast = Toast.makeText(MyApplication.getAppContext(), message, duration);
         } else {
             toast.setText(message);
             toast.setDuration(duration);
@@ -42,7 +42,7 @@ public class ToastUitls {
      */
     public static void showShort(int strResId) {
 //		Toast.makeText(context, strResId, Toast.LENGTH_SHORT).show();
-        initToast(DailyNewsApplication.getAppContext().getResources().getText(strResId), Toast.LENGTH_SHORT).show();
+        initToast(MyApplication.getAppContext().getResources().getText(strResId), Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -60,7 +60,7 @@ public class ToastUitls {
      * @param strResId
      */
     public static void showLong(int strResId) {
-        initToast(DailyNewsApplication.getAppContext().getResources().getText(strResId), Toast.LENGTH_LONG).show();
+        initToast(MyApplication.getAppContext().getResources().getText(strResId), Toast.LENGTH_LONG).show();
     }
 
     /**

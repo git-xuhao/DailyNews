@@ -11,7 +11,7 @@ import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-import com.geek.dailynews.DailyNewsApplication;
+import com.geek.dailynews.MyApplication;
 
 
 /**
@@ -32,7 +32,7 @@ public class DisplayUtil {
 	 * @return
 	 */
 	public static int px2dip(float pxValue) {
-		final float scale = DailyNewsApplication.getAppContext().getResources().getDisplayMetrics().density;
+		final float scale = MyApplication.getAppContext().getResources().getDisplayMetrics().density;
 		return (int) (pxValue / scale + 0.5f);
 	}
 
@@ -44,7 +44,7 @@ public class DisplayUtil {
 	 * @return
 	 */
 	public static int dip2px( float dipValue) {
-		final float scale = DailyNewsApplication.getAppContext().getResources().getDisplayMetrics().density;
+		final float scale = MyApplication.getAppContext().getResources().getDisplayMetrics().density;
 		return (int) (dipValue * scale + 0.5f);
 	}
 
@@ -56,7 +56,7 @@ public class DisplayUtil {
 	 * @return
 	 */
 	public static int px2sp(float pxValue) {
-		final float fontScale = DailyNewsApplication.getAppContext().getResources().getDisplayMetrics().scaledDensity;
+		final float fontScale = MyApplication.getAppContext().getResources().getDisplayMetrics().scaledDensity;
 		return (int) (pxValue / fontScale + 0.5f);
 	}
 
@@ -68,7 +68,7 @@ public class DisplayUtil {
 	 * @return
 	 */
 	public static int sp2px(float spValue) {
-		final float fontScale = DailyNewsApplication.getAppContext().getResources().getDisplayMetrics().scaledDensity;
+		final float fontScale = MyApplication.getAppContext().getResources().getDisplayMetrics().scaledDensity;
 		return (int) (spValue * fontScale + 0.5f);
 	}
 

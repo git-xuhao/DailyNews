@@ -3,7 +3,6 @@ package com.geek.dailynews.ui.main;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.KeyEvent;
 import android.widget.FrameLayout;
 
 import com.flyco.tablayout.CommonTabLayout;

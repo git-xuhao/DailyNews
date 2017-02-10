@@ -11,14 +11,14 @@ import android.content.res.Resources;
  * on 2016.12.16  16:31
  * Function:
  */
-public class DailyNewsApplication extends Application {
-    private static DailyNewsApplication mDailyNewsApplication;
+public class MyApplication extends Application {
+    private static MyApplication myApplication;
 
 
     @Override
     public void onCreate() {
         super.onCreate();
-        mDailyNewsApplication=this;
+        myApplication =this;
     }
 
     /**
@@ -26,7 +26,7 @@ public class DailyNewsApplication extends Application {
      * @return
      */
     public static Context getAppContext(){
-        return mDailyNewsApplication;
+        return myApplication;
     }
 
     /**
@@ -34,7 +34,7 @@ public class DailyNewsApplication extends Application {
      * @return
      */
     public static Resources getAppResources(){
-        return mDailyNewsApplication.getResources();
+        return myApplication.getResources();
     }
 
 
