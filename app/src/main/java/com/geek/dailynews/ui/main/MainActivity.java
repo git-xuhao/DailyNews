@@ -1,9 +1,14 @@
 package com.geek.dailynews.ui.main;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
@@ -31,7 +36,7 @@ public class MainActivity extends BaseActivity {
     private PictureFragment mPictureFragment;
     private MoreFragment mMoreFragment;
 
-    private String[] mTitles = {"资讯", "视频", "图库", "我的"};
+    private String[] mTitles = {"头条","社会","国内","娱乐","体育","军事","科技","财经","时尚"};
 
     private int[] mIconUnSelectIds = {R.mipmap.ic_launcher, R.mipmap.ic_launcher,
             R.mipmap.ic_launcher, R.mipmap.ic_launcher};
@@ -73,6 +78,9 @@ public class MainActivity extends BaseActivity {
         }
         tabLayout.setCurrentTab(mCurrIndex);
         switchFragment(mCurrIndex);
+
+
+
     }
 
     /**
