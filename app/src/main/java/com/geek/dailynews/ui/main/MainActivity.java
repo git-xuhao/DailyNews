@@ -1,14 +1,9 @@
 package com.geek.dailynews.ui.main;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
-import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
@@ -31,15 +26,17 @@ import butterknife.Bind;
  */
 public class MainActivity extends BaseActivity {
 
-    private HomeFragment mHomeFragment;
+    private HomeFragment mNewsFragment;
     private VideoFragment mVideoFragment;
     private PictureFragment mPictureFragment;
     private MoreFragment mMoreFragment;
 
-    private String[] mTitles = {"头条","社会","国内","娱乐","体育","军事","科技","财经","时尚"};
-
+    // 顶部滑动的标签栏
+    private String[] mTitles = {"资讯","视频","图库","我的"};
+    // 未被选中的图标
     private int[] mIconUnSelectIds = {R.mipmap.ic_launcher, R.mipmap.ic_launcher,
             R.mipmap.ic_launcher, R.mipmap.ic_launcher};
+    // 被选中的图标
     private int[] mIconSelectIds = {R.mipmap.ic_launcher, R.mipmap.ic_launcher,
             R.mipmap.ic_launcher, R.mipmap.ic_launcher};
 
@@ -117,11 +114,11 @@ public class MainActivity extends BaseActivity {
         LogUtils.logd("current position tab"+position);
         switch (position){
             case 0: //首页
-                if(mHomeFragment==null) {
-                    mHomeFragment = HomeFragment.getInstance(mTitles[0]);
-                    transaction.add(R.id.fl_container,mHomeFragment,"home");
+                if(mNewsFragment ==null) {
+                    mNewsFragment = HomeFragment.getInstance(mTitles[0]);
+                    transaction.add(R.id.fl_container, mNewsFragment,"home");
                 }else{
-                    transaction.show(mHomeFragment);
+                    transaction.show(mNewsFragment);
                 }
                 break;
             case 1: //视频
@@ -164,8 +161,8 @@ public class MainActivity extends BaseActivity {
      * @param transaction transaction
      */
     private void hideFragments(FragmentTransaction transaction) {
-        if (null != mHomeFragment) {
-            transaction.hide(mHomeFragment);
+        if (null != mNewsFragment) {
+            transaction.hide(mNewsFragment);
         }
         if (null != mVideoFragment) {
             transaction.hide(mVideoFragment);

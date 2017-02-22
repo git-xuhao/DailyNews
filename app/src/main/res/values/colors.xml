@@ -5,13 +5,13 @@
     <color name="colorAccent">#FF4081</color>
 
     <!--夜间主题-->
-    <color name="night_backgroup_color">#3F3F3F</color>
+    <color name="night_background_color">#3F3F3F</color>
     <color name="night_one_text_color">#FFbbbbbb</color>
     <color name="night_two_text_color">#8A9599</color>
     <color name="night_there_text_color">#8A9599</color>
 
     <!--白天主题-->
-    <color name="day_backgroup_color">#FFFFFFFF</color>
+    <color name="day_background_color">#FF4</color>
     <color name="day_one_text_color">#FF000000</color>
     <color name="day_two_text_color">#c9000000</color>
     <color name="day_three_text_color">#8A9599</color>

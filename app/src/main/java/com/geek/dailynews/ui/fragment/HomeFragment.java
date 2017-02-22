@@ -8,11 +8,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Toast;
 
 import com.geek.dailynews.R;
 import com.geek.dailynews.mvpframe.base.BaseFragment;
-import com.geek.dailynews.utils.ToastUitls;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 
@@ -31,13 +29,13 @@ public class HomeFragment extends BaseFragment {
     @Bind(R.id.fab)
     FloatingActionButton mFab;
 
-    private String title;
+    private String mTitle;
 
     public static HomeFragment getInstance(String title) {
         HomeFragment fragment = new HomeFragment();
         Bundle bundle = new Bundle();
         fragment.setArguments(bundle);
-        fragment.title = title;
+        fragment.mTitle = title;
         return fragment;
     }
 

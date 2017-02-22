@@ -2,6 +2,7 @@ package com.geek.dailynews.api;
 
 /**
  * Created by Xiho on 2017/2/14.
+ * Api 常量
  */
 
 public class ApiConstants {
@@ -12,6 +13,11 @@ public class ApiConstants {
     public static final String APP_KEY="e8ab79ef9b07d71b3009e7ed009ae2ec";
 
     public static final String TOU_TIAO ="http://v.juhe.cn/";
+
+
+
+
+
 
 
     /**

@@ -14,24 +14,35 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-        <item name="dayNightBackground">@color/day_backgroup_color</item>
+        <item name="dayNightBackground">@color/day_background_color</item>
         <item name="dayNightOneTextColor">@color/day_one_text_color</item>
         <item name="dayNightTwoTextColor">@color/day_two_text_color</item>
         <item name="dayNightThreeTextColor">@color/day_three_text_color</item>
-        <item name="dayNightBackgroundDrawable">@color/day_backgroup_color</item>
+        <item name="dayNightBackgroundDrawable">@color/day_background_color</item>
     </style>
     <!--夜间主题-->
     <style name="NightTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/night_backgroup_color</item>
-        <item name="colorPrimaryDark">@color/night_backgroup_color</item>
-        <item name="colorAccent">@color/night_backgroup_color</item>
+        <item name="colorPrimary">@color/night_background_color</item>
+        <item name="colorPrimaryDark">@color/night_background_color</item>
+        <item name="colorAccent">@color/night_background_color</item>
 
-        <item name="dayNightBackground">@color/night_backgroup_color</item>
+        <item name="dayNightBackground">@color/night_background_color</item>
         <item name="dayNightOneTextColor">@color/night_one_text_color</item>
         <item name="dayNightTwoTextColor">@color/night_two_text_color</item>
         <item name="dayNightThreeTextColor">@color/night_there_text_color</item>
         <item name="dayNightBackgroundDrawable">@color/night_there_text_color</item>
 
+    </style>
+
+
+    <!--新闻Item 样式-->
+    <style name="news_card_view_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
+        <item name="android:layout_marginTop">2dp</item>
     </style>
 
 </resources>
